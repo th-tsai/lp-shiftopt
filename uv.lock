@@ -42,7 +42,7 @@ wheels = [
 ]
 
 [[package]]
-name = "lp-blendmax"
+name = "lp-shiftopt"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
