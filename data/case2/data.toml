@@ -1,0 +1,15 @@
+[result]
+description = "P7 production time reduced to 5.44 h — threshold where P7 first becomes profitable"
+result = "result/case2.log"
+
+[scalar]
+max_workers = 500
+max_part_time_fraction = 0.25
+setup_products = ["P3", "P4"]
+setup_cost = 75
+days = 7
+work_days = 5
+
+[table_path]
+product = "product.csv"
+worker = "worker.csv"

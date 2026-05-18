@@ -1,0 +1,8 @@
+product,sale_price,production_time,fixed_cost,threshold,extra_hours
+P1,100,1.0,0,0,0
+P2,420,2.0,0,100,1
+P3,350,2.7,0,0,0
+P4,490,2.4,0,0,0
+P5,550,4.5,0,0,0
+P6,148,0.7,0,0,0
+P7,1115,9.5,2000,0,0

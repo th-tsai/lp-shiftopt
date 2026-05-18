@@ -1,0 +1,3 @@
+worker_type,cost_per_hour,hours_per_day
+FT,80,8
+PT,35,6
