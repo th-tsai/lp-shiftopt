@@ -1,0 +1,15 @@
+[result]
+description = "P7 production time 5.5 h with sale price raised to £1,126"
+result = "result/case3.log"
+
+[scalar]
+max_workers = 500
+max_part_time_fraction = 0.25
+setup_products = ["P3", "P4"]
+setup_cost = 75
+days = 7
+work_days = 5
+
+[table_path]
+product = "product.csv"
+worker = "worker.csv"
