@@ -112,31 +112,31 @@ $$\sum_t h_{\text{PT}}\,y_{t,\text{PT}} \;\le\; \alpha\!\sum_t\sum_w h_w\,y_{t,w
 
 **C2 — Site capacity** (workers on duty cannot exceed the site maximum)
 
-$$N_t \le N^{\max} \quad \forall \, t \in T$$
+$$N_t \le N^{\max} \quad \forall t \in T$$
 
 **C3 — Labour hours** (production and setup together cannot exceed available hours)
 
-$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \;\le\; H_t \quad \forall \, t \in T$$
+$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \;\le\; H_t \quad \forall t \in T$$
 
 **C4 — Activation big-M** (production is zero if and only if the binary is off)
 
-$$x_{t,p} \le M_p\,z_{t,p} \quad \forall \, t \in T, \, p \in P$$
+$$x_{t,p} \le M_p\,z_{t,p} \quad \forall t \in T, p \in P$$
 
-$$1-x_{t,p} \le M_p(1-z_{t,p}) \quad \forall \, t \in T, \, p \in P$$
+$$1-x_{t,p} \le M_p(1-z_{t,p}) \quad \forall t \in T, p \in P$$
 
 **C5 — Setup AND gate** ($l_t = 1$ only when both P3 and P4 are active simultaneously)
 
-$$l_t \le z_{t,p_3} \quad \forall \, t \in T$$
+$$l_t \le z_{t,p_3} \quad \forall t \in T$$
 
-$$l_t \le z_{t,p_4} \quad \forall \, t \in T$$
+$$l_t \le z_{t,p_4} \quad \forall t \in T$$
 
-$$l_t \ge z_{t,p_3}+z_{t,p_4}-1 \quad \forall \, t \in T$$
+$$l_t \ge z_{t,p_3}+z_{t,p_4}-1 \quad \forall t \in T$$
 
 **C6 — Threshold split** (P2 production split into below- and above-threshold components for piecewise labour cost)
 
-$$u_{t,p}+v_{t,p} = x_{t,p} \quad \forall \, t \in T, \, p \in P$$
+$$u_{t,p}+v_{t,p} = x_{t,p} \quad \forall t \in T, p \in P$$
 
-$$u_{t,p} \le \theta_p \quad \forall \, t \in T, \, p \in P$$
+$$u_{t,p} \le \theta_p \quad \forall t \in T, p \in P$$
 
 C3 couples the production and staffing decisions: the 75-hour setup cost is denominated in labour-hours, directly reducing the time available for production on any day both P3 and P4 run. C4 uses a big-M pair to enforce the activation logic: zero production forces the binary off; the binary off forces zero production. C5 is a standard AND-gate linearisation. C6 splits P2 production into a below-threshold and above-threshold component so the piecewise labour cost stays linear.
 
