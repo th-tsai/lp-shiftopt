@@ -108,7 +108,7 @@ Labour cost is paid per shift start; a worker starting on day $t$ costs $D_w \cd
 
 **C1 — Union limit** (part-time hours capped as a fraction of total hours)
 
-$$\sum_t h_{\text{PT}}\,y_{t,\text{PT}} \;\le\; \alpha\!\sum_t\sum_w h_w\,y_{t,w}$$
+$$\sum_t h_{\text{PT}}\,y_{t,\text{PT}} \le \alpha\!\sum_t\sum_w h_w\,y_{t,w}$$
 
 **C2 — Site capacity** (workers on duty cannot exceed the site maximum)
 
@@ -116,7 +116,7 @@ $$N_t \le N^{\max} \quad \forall t \in T$$
 
 **C3 — Labour hours** (production and setup together cannot exceed available hours)
 
-$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \;\le\; H_t \quad \forall t \in T$$
+$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \le H_t \quad \forall t \in T$$
 
 **C4 — Activation big-M** (production is zero if and only if the binary is off)
 
