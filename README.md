@@ -323,5 +323,3 @@ The largest profit gains in these scenarios come from speed, not price. Making P
 
 **The plan is stable until it isn't — transitions are sharp, not gradual.**  
 In nearly every scenario, the factory either ignores a product completely or dedicates significant capacity to it. There is very little "produce a bit of this alongside a bit of that." This is a feature of running at full capacity: when every hour is committed, a product that edges above a competitor in hourly value immediately takes all that competitor's hours. Small parameter changes can trigger complete plan reorganisations — which is exactly why sensitivity analysis matters.
-
----
