@@ -100,30 +100,45 @@ $$N_t = \sum_{w \in W}\sum_{i=0}^{D_w-1} y_{(t-i)\bmod D,\,w} \qquad H_t = \sum_
 
 ### Objective — maximise weekly profit
 
-$$
-\max \underbrace{\sum_{t \in T}\sum_{p \in P}\bigl[s_p\,x_{t,p} - f_p\,z_{t,p}\bigr]}_{\text{production revenue net of fixed costs}} - \underbrace{\sum_{t \in T}\sum_{w \in W} D_w \cdot c_w \cdot h_w \cdot y_{t,w}}_{\text{total labour cost}}
-$$
+$$\max \quad \underbrace{\sum_{t \in T}\sum_{p \in P}\bigl[s_p\,x_{t,p} - f_p\,z_{t,p}\bigr]}_{\text{production revenue net of fixed costs}} - \underbrace{\sum_{t \in T}\sum_{w \in W} D_w \cdot c_w \cdot h_w \cdot y_{t,w}}_{\text{total labour cost}}$$
 
 Labour cost is paid per shift start; a worker starting on day $t$ costs $D_w \cdot c_w \cdot h_w$ in total regardless of production volume.
 
 ### Constraints
 
-$$\sum_t h_{\text{PT}}\,y_{t,\text{PT}} \;\le\; \alpha\!\sum_t\sum_w h_w\,y_{t,w} \tag{C1: union limit}$$
+**C1 — Union limit** (part-time hours capped as a fraction of total hours)
 
-$$N_t \le N^{\max} \quad \forall\, t \tag{C2: site capacity}$$
+$$\sum_t h_{\text{PT}}\,y_{t,\text{PT}} \;\le\; \alpha\!\sum_t\sum_w h_w\,y_{t,w}$$
 
-$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \;\le\; H_t \quad \forall\, t \tag{C3: labour hours}$$
+**C2 — Site capacity** (workers on duty cannot exceed the site maximum)
 
-$$x_{t,p} \le M_p\,z_{t,p} \quad\text{and}\quad 1-x_{t,p} \le M_p(1-z_{t,p}) \quad \forall\, t,p \tag{C4: activation big-M}$$
+$$N_t \le N^{\max} \quad \forall\, t$$
 
-$$l_t \le z_{t,p_3},\quad l_t \le z_{t,p_4},\quad l_t \ge z_{t,p_3}+z_{t,p_4}-1 \quad \forall\, t \tag{C5: setup AND gate}$$
+**C3 — Labour hours** (production and setup together cannot exceed available hours)
 
-$$u_{t,p}+v_{t,p} = x_{t,p} \quad\text{and}\quad u_{t,p} \le \theta_p \quad \forall\, t,p \tag{C6: threshold split}$$
+$$\sum_p \bigl[\tau_p\,x_{t,p} + e_p\,v_{t,p}\bigr] + \kappa\,l_t \;\le\; H_t \quad \forall\, t$$
 
-> **C3** couples the production and staffing decisions: the 75-hour setup cost is denominated in labour-hours, directly reducing the time available for production on any day both P3 and P4 run.  
-> **C4** uses a big-M pair to enforce the activation logic: zero production forces the binary off; the binary off forces zero production.  
-> **C5** is a standard AND-gate linearisation — $l_t = 1$ only when both setup products are active simultaneously.  
-> **C6** splits P2 production into a below-threshold and above-threshold component so the piecewise labour cost stays linear.
+**C4 — Activation big-M** (production is zero if and only if the binary is off)
+
+$$x_{t,p} \le M_p\,z_{t,p} \quad \forall\, t,p$$
+
+$$1-x_{t,p} \le M_p(1-z_{t,p}) \quad \forall\, t,p$$
+
+**C5 — Setup AND gate** ($l_t = 1$ only when both P3 and P4 are active simultaneously)
+
+$$l_t \le z_{t,p_3} \quad \forall\, t$$
+
+$$l_t \le z_{t,p_4} \forall\, t$$
+
+$$l_t \ge z_{t,p_3}+z_{t,p_4}-1 \quad \forall\, t$$
+
+**C6 — Threshold split** (P2 production split into below- and above-threshold components for piecewise labour cost)
+
+$$u_{t,p}+v_{t,p} = x_{t,p} \quad \forall\, t,p$$
+
+$$u_{t,p} \le \theta_p \quad \forall\, t,p$$
+
+C3 couples the production and staffing decisions: the 75-hour setup cost is denominated in labour-hours, directly reducing the time available for production on any day both P3 and P4 run. C4 uses a big-M pair to enforce the activation logic: zero production forces the binary off; the binary off forces zero production. C5 is a standard AND-gate linearisation. C6 splits P2 production into a below-threshold and above-threshold component so the piecewise labour cost stays linear.
 
 ---
 
@@ -308,5 +323,3 @@ The largest profit gains in these scenarios come from speed, not price. Making P
 
 **The plan is stable until it isn't — transitions are sharp, not gradual.**  
 In nearly every scenario, the factory either ignores a product completely or dedicates significant capacity to it. There is very little "produce a bit of this alongside a bit of that." This is a feature of running at full capacity: when every hour is committed, a product that edges above a competitor in hourly value immediately takes all that competitor's hours. Small parameter changes can trigger complete plan reorganisations — which is exactly why sensitivity analysis matters.
-
----
